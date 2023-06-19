@@ -44,7 +44,7 @@ class FilmManagerTest {
     @Test
     public void filmManagerTestTwoLast() {
 
-        FilmManager manager = new FilmManager();
+        FilmManager manager = new FilmManager(5);
 
         manager.addFilm("Film I");
         manager.addFilm("Film II");
@@ -57,8 +57,8 @@ class FilmManagerTest {
     }
 
     @Test
-    public void filmManagerTestTwist(){
-        FilmManager manager = new FilmManager();
+    public void filmManagerTestTwist() {
+        FilmManager manager = new FilmManager(5);
 
         manager.addFilm("Film I");
         manager.addFilm("Film II");
@@ -66,7 +66,25 @@ class FilmManagerTest {
         manager.addFilm("Film IV");
         manager.addFilm("Film V");
 
-        String[] expected = {"Film V", "Film IV" ,"Film III", "Film II", "Film I"};
+        String[] expected = {"Film V", "Film IV", "Film III", "Film II", "Film I"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void filmManagerTestFreeLast() {
+        FilmManager manager = new FilmManager(5);
+
+        manager.addFilm("Film I");
+        manager.addFilm("Film II");
+        manager.addFilm("Film III");
+        manager.addFilm("Film IV");
+        manager.addFilm("Film V");
+        manager.addFilm("Film VI");
+        manager.addFilm("Film VII");
+
+        String[] expected = {"Film VII", "Film VI", "Film V", "Film IV", "Film III"};
         String[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
